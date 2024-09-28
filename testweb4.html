@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Personal Trainer Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> <!-- Icons -->
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f6;
+      line-height: 1.6;
+    }
+
+    header {
+      background-image: url('your_image.jpg'); /* Use your image for header */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header h1 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 4rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    header button {
+      background-color: #e63946;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background-color: #457b9d;
+      transition: 0.3s;
+    }
+
+    /* Intro Section */
+    section.intro {
+      display: flex;
+      justify-content: space-between;
+      padding: 80px 20px;
+      background-color: #f1faee;
+    }
+
+    section.intro div {
+      width: 48%;
+      text-align: left;
+    }
+
+    section.intro h2 {
+      color: #457b9d;
+      font-size: 2.5rem;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    section.intro p {
+      font-size: 1.2rem;
+    }
+
+    section.intro img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Services Section */
+    section.services {
+      padding: 80px 20px;
+      background-color: #f4f7f6;
+      text-align: center;
+    }
+
+    section.services h2 {
+      font-size: 2.5rem;
+      color: #1d3557;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .service-item {
+      width: 30%;
+      background-color: #e63946;
+      color: white;
+      padding: 40px;
+      margin: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s;
+      text-align: center;
+    }
+
+    .service-item i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .service-item:hover {
+      transform: scale(1.1);
+    }
+
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .cta button {
+      background-color: #457b9d;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+
+    .cta button:hover {
+      background-color: #1d3557;
+    }
+
+    /* Enhanced Timeline Section */
+    .timeline-header {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #1d3557;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      z-index: 0; /* Set the z-index of the timeline container to 0 */
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #457b9d;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      z-index: -1; /* Ensure the line is behind other elements */
+    }
+
+    .timeline-entry {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      position: relative;
+      z-index: 1; /* Ensure the content appears in front of the line */
+    }
+
+    .timeline-entry.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-entry:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-entry .content {
+      width: 45%;
+      background-color: #f1faee;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1; /* Ensure content is above the line */
+    }
+
+    .timeline-entry .icon {
+      background-color: #e63946;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 1; /* Ensure icons appear in front of the line */
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: #1d3557;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer .social-icons a {
+      margin: 0 10px;
+      color: #fff;
+      font-size: 2rem;
+      transition: color 0.3s;
+    }
+
+    footer .social-icons a:hover {
+      color: #e63946;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+      section.intro {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      section.intro div {
+        width: 100%;
+      }
+
+      .services-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .service-item {
+        width: 80%;
+      }
+
+      .timeline-entry {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .timeline-entry:nth-child(even) {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Presentation Page -->
+  <header>
+    <h1>John Doe - Personal Trainer</h1>
+    <p>Transform Your Body, Transform Your Life</p>
+    <button>Get Started</button>
+  </header>
+
+  <section class="intro">
+    <div>
+      <h2>Welcome to my world of fitness</h2>
+      <p>With over 15 years of experience in personal training, I offer customized programs that help you reach your fitness goals faster and smarter. Join me and become the best version of yourself.</p>
+    </div>
+    <div>
+      <img src="fond2.jpg" alt="Personal Training"> <!-- Use your second image here -->
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>My Services</h2>
+    <div class="services-container">
+      <div class="service-item">
+        <i class="fas fa-dumbbell"></i>
+        <h3>Strength Training</h3>
+        <p>Build muscle, increase strength, and improve your overall health.</p>
+      </div>
+      <div class="service-item">
+        <i class="fas fa-heartbeat"></i>
+        <h3>Cardio Fitness</h3>
+        <p>Boost your cardiovascular health with personalized cardio programs.</p>
+      </div>
+      <div class="service-item">
+        <i class="fas fa-apple-alt"></i>
+        <h3>Nutrition Plans</h3>
+        <p>Receive personalized meal plans that complement your workout routines.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <button>Schedule a Consultation</button>
+  </div>
+
+  <!-- Enhanced Timeline with Icons and Scroll Animation -->
+  <section class="timeline-header">
+    <h1>My Journey</h1>
+    <p>A look at my path to becoming a fitness expert</p>
+  </section>
+
+  <div class="timeline">
+    <div class="timeline-entry">
+      <div class="icon">
+        <i class="fas fa-certificate"></i>
+      </div>
+      <div class="content">
+        <h2>2008</h2>
+        <p>Certified Personal Trainer - National Academy of Sports Medicine</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="icon">
+        <i class="fas fa-weight"></i>
+      </div>
+      <div class="content">
+        <h2>2012</h2>
+        <p>Specialized in Weight Loss and Strength Conditioning</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="icon">
+        <i class="fas fa-laptop"></i>
+      </div>
+      <div class="content">
+        <h2>2015</h2>
+        <p>Launched Online Coaching Program</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="icon">
+        <i class="fas fa-dumbbell"></i>
+      </div>
+      <div class="content">
+        <h2>2020</h2>
+        <p>Opened My Own Gym</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>Yvan Renaud-Perret</p>
+    <p>Email: <a href="mailto:Yvan.renaud-perret@estaca.eu">Yvan.renaud-perret@estaca.eu</a></p>
+    <p>Phone: <a href="tel:+33622847404">+33 6 22 84 74 04</a></p>
+    <p>Address: 6 rue Léonard de Vinci</p>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://www.instagram.com/wellmate.training/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61556549000509&paipv=0&eav=AfZ42XkeGDL_HFI-efCZvGzD7OX7gpvH8F029hpdZHIlpHtfTTSCv34W8qSqnC2sm8Y" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.linkedin.com/company/102081253/admin/dashboard/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll Animation for Timeline Entries
+    const timelineEntries = document.querySelectorAll('.timeline-entry');
+
+    function handleScroll() {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      timelineEntries.forEach(entry => {
+        const entryTop = entry.getBoundingClientRect().top;
+        if (entryTop < triggerBottom) {
+          entry.classList.add('active');
+        } else {
+          entry.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+  </script>
+
+</body>
+</html>
